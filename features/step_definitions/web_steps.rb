@@ -1,5 +1,10 @@
 Given /^I am on the home page$/ do
-  visit('/ncr')
+  visit('/')
+end
+
+When /^I search for "(.*?)"$/ do |text|
+  fill_in 'q', :with => text
+  page.execute_script("$('#top_search_form').submit();")
 end
 
 Given /^I have entered "([^"]*)" into the "([^"]*)" field$/ do |text, field|
@@ -13,5 +18,3 @@ end
 Then /^I should see "([^"]*)"$/ do |text|
   page.should have_content(text)
 end
-
-
